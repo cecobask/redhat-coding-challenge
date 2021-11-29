@@ -4,11 +4,13 @@ import (
 	"net/http"
 
 	"github.com/go-chi/chi"
+	"github.com/jackc/pgx/v4"
 )
 
 // NewHandler implements all routes for the application
-func NewHandler() http.Handler {
+func NewHandler(postgresConn *pgx.Conn) http.Handler {
 	router := chi.NewRouter()
-	router.Route("/objects", routeObjects)
+	objectsHandler := NewObjectsHandler(postgresConn)
+	router.Route("/objects", objectsHandler.InitObjectsRoute)
 	return router
 }
