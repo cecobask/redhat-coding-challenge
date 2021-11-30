@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// Initialize the Postgres database
-	postgresConn, err := postgres.Initialize(
+	pg, err := postgres.Initialize(
 		os.Getenv("POSTGRES_USER"),
 		os.Getenv("POSTGRES_PASSWORD"),
 		os.Getenv("POSTGRES_DB"),
@@ -22,10 +22,10 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	defer postgresConn.Close(context.Background())
+	defer pg.Conn.Close(context.Background())
 
 	// Setup the server
-	handler := handler.NewHandler(postgresConn)
+	handler := handler.NewHandler(pg)
 	server := &http.Server{
 		Addr:    fmt.Sprintf("0.0.0.0:%s", os.Getenv("SERVER_PORT")),
 		Handler: handler,

@@ -31,6 +31,9 @@ func errorRenderer(err error, statusCode int, message *string) *errorResponse {
 	case http.StatusNotImplemented:
 		errorResponse.StatusCode = http.StatusNotImplemented
 		errorResponse.StatusText = "Not implemented"
+	case http.StatusNotFound:
+		errorResponse.StatusCode = http.StatusNotFound
+		errorResponse.StatusText = "Not found"
 	}
 	return &errorResponse
 }
