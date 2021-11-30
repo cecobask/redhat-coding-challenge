@@ -39,5 +39,7 @@ services:
       - migrate
     ports:
       - "8080:8080"
+    volumes:
+      - ./db/files/uploads:/uploads
 volumes:
   pgdata: null

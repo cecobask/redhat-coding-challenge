@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/go-chi/render"
@@ -12,6 +13,9 @@ type errorResponse struct {
 	StatusText string  `json:"status_text"`
 	Message    *string `json:"message,omitempty"`
 }
+
+// ErrUnknownFileType is returned when a file with unknown type is uploaded to the server
+var ErrUnknownFileType = fmt.Errorf("Unknown file type")
 
 // Render renders a single payload and respond to the client request
 func (e *errorResponse) Render(w http.ResponseWriter, r *http.Request) error {

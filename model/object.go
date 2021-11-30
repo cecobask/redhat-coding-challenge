@@ -6,12 +6,12 @@ import (
 
 // Object ...
 type Object struct {
-	ID              int    `json:"id"`
-	ObjectName      string `json:"object_name"`
-	ObjectExtension string `json:"object_extension"`
-	ObjectPath      string `json:"object_path"`
-	BucketName      string `json:"bucket_name"`
-	CreatedAt       string `json:"created_at"`
+	ID              string `json:"id"`
+	ObjectName      string `json:"object_name,omitempty"`
+	ObjectExtension string `json:"object_extension,omitempty"`
+	ObjectPath      string `json:"object_path,omitempty"`
+	BucketName      string `json:"bucket_name,omitempty"`
+	CreatedAt       string `json:"created_at,omitempty"`
 }
 
 // ObjectList ...

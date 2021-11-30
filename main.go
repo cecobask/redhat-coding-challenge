@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/cecobask/redhat-coding-challenge/db/files"
 	"github.com/cecobask/redhat-coding-challenge/db/postgres"
 	"github.com/cecobask/redhat-coding-challenge/handler"
 	_ "github.com/joho/godotenv/autoload"
@@ -25,7 +26,8 @@ func main() {
 	defer pg.Conn.Close(context.Background())
 
 	// Setup the server
-	handler := handler.NewHandler(pg)
+	fm := files.NewFileManager()
+	handler := handler.NewHandler(pg, fm)
 	server := &http.Server{
 		Addr:    fmt.Sprintf("0.0.0.0:%s", os.Getenv("SERVER_PORT")),
 		Handler: handler,
