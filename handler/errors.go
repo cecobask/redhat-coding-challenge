@@ -38,6 +38,9 @@ func errorRenderer(err error, statusCode int, message *string) *errorResponse {
 	case http.StatusNotFound:
 		errorResponse.StatusCode = http.StatusNotFound
 		errorResponse.StatusText = "Not found"
+	case http.StatusBadRequest:
+		errorResponse.StatusCode = http.StatusBadRequest
+		errorResponse.StatusText = "Bad request"
 	}
 	return &errorResponse
 }

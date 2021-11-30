@@ -167,8 +167,6 @@ func (oh *objectsHandler) DeleteObjectByBucketNameAndID(w http.ResponseWriter, r
 		render.Render(w, r, errorRenderer(err, http.StatusInternalServerError, nil))
 		return
 	}
-	if err := render.Render(w, r, object); err != nil {
-		render.Render(w, r, errorRenderer(err, http.StatusInternalServerError, nil))
-	}
+	render.Status(r, http.StatusOK)
 	return
 }
